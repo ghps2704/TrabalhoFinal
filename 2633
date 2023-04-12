@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    static class Carne {
+        String nome;
+        int validade;
+
+        public Carne(String nome, int validade) {
+            this.nome = nome;
+            this.validade = validade;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (sc.hasNext()) {
+            int n = sc.nextInt();
+            List<Carne> carnes = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                String nome = sc.next();
+                int validade = sc.nextInt();
+                carnes.add(new Carne(nome, validade));
+            }
+
+            carnes.sort(Comparator.comparingInt(c -> c.validade));
+
+            StringBuilder sb = new StringBuilder();
+            for (Carne carne : carnes) {
+                sb.append(carne.nome).append(" ");
+            }
+            System.out.println(sb.toString().trim());
+        }
+
+        sc.close();
+    }
+}
