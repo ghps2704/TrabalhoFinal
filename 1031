@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.IOException;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList <Integer> antigos = new ArrayList<>();
+        int teste;
+        do {
+            int salto = 0, valor =1;
+            teste = scanner.nextInt();
+            if (teste <= 0) {
+                break;
+            }
+            ArrayList <Integer> valores = new ArrayList<>();
+            for (int i = 1; i <= teste; i++) {
+                valores.add(i);
+            }
+            antigos.clear();
+            antigos.add(1);
+            while(antigos.get(antigos.size() - 1) != 13) {
+                salto ++;
+                valor = 1;
+                do {
+                for (int k = 0; k < salto; k++) {
+                    valor ++;
+                    if (valor > valores.size()) {
+                        valor -= valores.size();
+                    }
+                    while(antigos.contains(valor)) {
+                        valor ++;
+                        if (valor > valores.size()) {
+                            valor -= valores.size();
+                        }
+                    }
+                }
+                antigos.add(valor);
+                } while (antigos.size() < valores.size());
+                    if (antigos.get(antigos.size() -1) == 13) {
+                        break;
+                    }
+                    antigos.clear();
+                    antigos.add(1);
+            }
+            System.out.println(salto);
+        } while (teste != 0);
+    }
+}
